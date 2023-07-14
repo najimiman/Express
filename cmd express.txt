@@ -1,0 +1,8 @@
+for instalation:
+
+->test node -v and npm -v
+
+-npm i nodemon
+-npm init
+->install express 
+-npm i express --save

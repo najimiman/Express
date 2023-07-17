@@ -30,6 +30,3 @@ ce qui permet une grande flexibilité dans la structure des données.
 
 instalation de mongoose 
 npm install mongoose -save
-
-
-https://www.youtube.com/watch?v=Akt98GIXArg&pp=ygUSZXhwcmVzcyBqcyBhcmFiaWMg

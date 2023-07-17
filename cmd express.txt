@@ -1,3 +1,6 @@
+
+Node.js est une plateforme logicielle permettant d'exécuter du code JavaScript côté serveur
+Express.js est un framework web pour Node.js
 for instalation:
 
 ->test node -v and npm -v
@@ -6,3 +9,27 @@ for instalation:
 -npm init
 ->install express 
 -npm i express --save
+
+->run 
+npm install -g nodemon
+nodemon ./index.js
+->or
+in package.json a scripts add this ligne-> "start":"nodemon index.js"
+->after run npm start
+
+->Express Generator
+-npx express-generator
+-npm i express-generator
+-npm run start
+
+définition de mongodb:
+MongoDB est un système de gestion de base de données document-orienté, open source et NoSQL. 
+Il a été conçu pour stocker et gérer des données non structurées et semi-structurées, ainsi que des données structurées. 
+MongoDB utilise des documents JSON (JavaScript Object Notation) pour représenter les données stockées, 
+ce qui permet une grande flexibilité dans la structure des données.
+
+instalation de mongoose 
+npm install mongoose -save
+
+
+https://www.youtube.com/watch?v=Akt98GIXArg&pp=ygUSZXhwcmVzcyBqcyBhcmFiaWMg

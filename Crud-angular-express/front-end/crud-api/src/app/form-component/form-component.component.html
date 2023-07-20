@@ -1,0 +1,17 @@
+<h1>Add Task</h1>
+
+<form class="example-form"  #addCustomerFrom="ngForm" (submit)="savetask()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="name" [(ngModel)]="mytask.name" name="name">
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <mat-label>Date</mat-label>
+      <!-- <textarea matInput placeholder="Ex. It makes me feel..."></textarea> -->
+      <input matInput placeholder="Date" type="datetime" [(ngModel)]="mytask.datetime" name="datetime">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary"  type="submit">ADD TASK</button>
+  </form>
+  

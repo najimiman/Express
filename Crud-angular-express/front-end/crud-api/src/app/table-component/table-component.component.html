@@ -1,40 +1,20 @@
-<p>table-component works!</p>
+<p>Gestion task</p>
 
-<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
 
     
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
-  
-  
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-  
    
-    <ng-container matColumnDef="datetime">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.datetime}} </td>
-    </ng-container>
-  
-  
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef> delete </th>
-      <td mat-cell *matCellDef="let element"> {{element.delete}} </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table> -->
 
 
  
 
+  <!-- <input type="text" name="name" [(ngModel)]="name" (input)="search()" placeholder="search"> -->
 
-  <button mat-raised-button color="primary"  [routerLink]="['/addtask']">ADD TASK</button>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput  type="text" name="name" [(ngModel)]="name" (input)="search()" placeholder="search">
+  </mat-form-field>
+  <button mat-raised-button color="primary"  [routerLink]="['/addtask']"  style="left: 10px;">ADD TASK</button>
   <br>
   <table mat-table [dataSource]="dataSource">
 
@@ -66,8 +46,6 @@
   <tr mat-row *matRowDef="let row; columns: ['_id','name', 'datetime', 'delete','update'];"></tr>
 
 </table>
-
- <!-- <button mat-raised-button *ngFor="let row of dataSource" >Details </button> -->
 
 
   

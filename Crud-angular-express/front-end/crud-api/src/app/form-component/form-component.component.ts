@@ -72,7 +72,7 @@ updatetask(){
     console.log(data);
     console.log(this.id,this.mytask);
     // console.log(this.mytask.datetime);
-    // this.router.navigate(['/home']);
+    this.router.navigate(['/home']);
   },(err)=>{
     console.log(err)
   })

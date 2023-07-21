@@ -1,4 +1,5 @@
-<h1>Add Task</h1>
+<h1 *ngIf="!editform">Add Task</h1>
+<h1 *ngIf="editform">Update Task</h1>
 
 <form class="example-form"  #addCustomerFrom="ngForm" (submit)="savetask()">
     <mat-form-field class="example-full-width">
@@ -8,7 +9,6 @@
   
     <mat-form-field class="example-full-width">
       <mat-label>Date</mat-label>
-      <!-- <textarea matInput placeholder="Ex. It makes me feel..."></textarea> -->
       <input matInput placeholder="Date" type="datetime" [(ngModel)]="mytask.datetime" name="datetime">
     </mat-form-field>
     <br>

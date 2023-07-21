@@ -16,6 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    MatTableModule,FormsModule, MatFormFieldModule, MatInputModule
+    MatTableModule,FormsModule, MatFormFieldModule, MatInputModule, MatTooltipModule
   ],
   providers: [
     DatePipe

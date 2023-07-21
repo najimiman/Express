@@ -37,6 +37,36 @@ router.get('/tachebyid', async (req, res, next) => {
   res.json(taches);
 });
 
+//search task by name
+// router.get('/searchtachebyname', async (req, res, next) => {
+//   const name=req.query.name;
+//   const taches = await TacheM.(id);
+//   res.json(taches);
+// });
+// router.get('/search', function(req, res) {
+//   const query = req.query.q;
+//   // Use Mongoose to search for data in your database
+//   TacheM.find({ $or: [{ name: { $regex: query, $options: 'i' } }, { datetime: { $regex: query, $options: 'i' } }] }, function(err, data) {
+//     if (err) {
+//       console.log(err);
+//       res.status(500).send(err);
+//     } else {
+//       res.json(data);
+//     }
+//   });
+// });
+router.get('/search', async function(req, res) {
+  const query = req.query.q;
+  try {
+    const data = await TacheM.find({ $or: [{ name: { $regex: query, $options: 'i' } }, { datetime: { $regex: query, $options: 'i' } }] });
+    console.log(data);
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
+
 // add tache
 router.post('/addtache',async(req,res,next)=>{
   const newtache=new TacheM({

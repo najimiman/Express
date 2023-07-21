@@ -7,6 +7,7 @@ const routes: Routes = [
   {path:"home",component:TableComponentComponent},
   {path:"addtask",component:FormComponentComponent},
   { path: '',redirectTo:'home',pathMatch:'full'},
+  { path: 'edittask/:myId',component:FormComponentComponent }
 ];
 
 @NgModule({

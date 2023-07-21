@@ -30,6 +30,13 @@ router.get('/tache', async (req, res, next) => {
   res.json(taches);
 });
 
+//get task by id
+router.get('/tachebyid', async (req, res, next) => {
+  const id=req.query.id;
+  const taches = await TacheM.findById(id);
+  res.json(taches);
+});
+
 // add tache
 router.post('/addtache',async(req,res,next)=>{
   const newtache=new TacheM({

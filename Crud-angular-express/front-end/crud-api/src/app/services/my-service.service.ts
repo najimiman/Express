@@ -24,9 +24,16 @@ export class MyServiceService {
   }
 
   deletetask(id:any){
-    return this.http.delete(`/api/deletetache${id}`)
+    return this.http.delete(`/api/deletetache?id=${id}`)
   }
 
-  
+  gettaskbyid(id:any){
+    return this.http.get(`/api/tachebyid?id=${id}`)
+  }
+
+  updatetask(id:any,name:any,datetime:any){
+    // return this.http.put('/api/updatetache',id,body);
+    return this.http.put(`/api/updatetache?id=${id}&name=${name}&datetime=${datetime}`,{});
+  }
 
 }

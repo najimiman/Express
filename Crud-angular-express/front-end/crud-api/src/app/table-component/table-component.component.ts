@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Taches } from './taches.module';
 import { MyServiceService } from '../services/my-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-component',
@@ -8,7 +9,7 @@ import { MyServiceService } from '../services/my-service.service';
   styleUrls: ['./table-component.component.scss']
 })
 export class TableComponentComponent {
-  constructor(private tacheservice:MyServiceService) { }
+  constructor(private tacheservice:MyServiceService,private router: Router) { }
 
   // taches:Taches[]=[
   //   {"id": "1","name": "Task 1", "datetime":new Date("2022-11-12")},
@@ -22,8 +23,9 @@ export class TableComponentComponent {
 
 
 
-  displayedColumns: string[] = ['_id','name', 'datetime', 'delete'];
+  displayedColumns: string[] = ['_id','name', 'datetime', 'delete','update'];
   dataSource :any;
+  myId:number=0;
   
 
   ngOnInit(){
@@ -35,6 +37,9 @@ export class TableComponentComponent {
     //   console.log(data);
 
     // })
+    this.gettache();
+  }
+  gettache(){
     this.tacheservice.getalltache()
     .subscribe((data:any) => {
       console.log(data);
@@ -53,12 +58,18 @@ export class TableComponentComponent {
     this.tacheservice.deletetask(row._id).subscribe((data)=>{
       // this.mytask=[data,...this.mytask];
       console.log(data);
-      this.taches=this.taches.filter((task:any) => task._id!=row._id)
+      this.gettache();
+      // this.taches=this.taches.filter((task:any) => task._id!=row._id)
     },(err)=>{
       console.log(err)
     })
     // const index = this.dataSource.data.indexOf(row);
     // this.dataSource.data.splice(index, 1);
     // this.dataSource._updateChangeSubscription();
+  }
+  editrow(row:any){
+    this.myId=row._id;
+    this.router.navigate(['/edittask', this.myId]);
+    // alert(this.myId);
   }
 }

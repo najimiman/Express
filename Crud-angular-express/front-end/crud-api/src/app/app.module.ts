@@ -15,6 +15,7 @@ import { FormComponentComponent } from './form-component/form-component.componen
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import {FormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     MatTableModule,FormsModule, MatFormFieldModule, MatInputModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

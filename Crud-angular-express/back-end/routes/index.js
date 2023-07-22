@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var mongoose=require('mongoose');
 const TacheM = require('../models/Tache');
+const UserM = require('../models/Usere');
+const bcrypt=require('bcrypt')
+var jwt = require('jsonwebtoken');
+
 
 //connection
 mongoose.connect('mongodb://127.0.0.1:27017/store',{
@@ -19,11 +23,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-//get data tache
-// router.get('/tache',async(req, res, next) => {
-//   const taches=await TacheM.find();
-//   res.json(taches);
-// });
 
 router.get('/tache', async (req, res, next) => {
   const taches = await TacheM.find();
@@ -37,24 +36,6 @@ router.get('/tachebyid', async (req, res, next) => {
   res.json(taches);
 });
 
-//search task by name
-// router.get('/searchtachebyname', async (req, res, next) => {
-//   const name=req.query.name;
-//   const taches = await TacheM.(id);
-//   res.json(taches);
-// });
-// router.get('/search', function(req, res) {
-//   const query = req.query.q;
-//   // Use Mongoose to search for data in your database
-//   TacheM.find({ $or: [{ name: { $regex: query, $options: 'i' } }, { datetime: { $regex: query, $options: 'i' } }] }, function(err, data) {
-//     if (err) {
-//       console.log(err);
-//       res.status(500).send(err);
-//     } else {
-//       res.json(data);
-//     }
-//   });
-// });
 router.get('/search', async function(req, res) {
   const query = req.query.q;
   try {
@@ -109,4 +90,43 @@ router.delete('/deletetache',async(req,res,next)=>{
   })
 })
 
+router.get('/uers', async (req, res, next) => {
+  const users = await UserM.find();
+  res.json(users);
+});
+
+//registre
+router.post('/register',async(req,res)=>{
+  const {name,email,password}=req.body
+  const admin=await UserM.findOne({email,password})
+  // this row if admin true res message 
+  admin && res.json({message:"user already existe!"})
+
+  // this else created user
+    const hashedpassword=bcrypt.hashSync(password,10)
+    const newuser=new UserM({
+      name,
+      email,
+      password:hashedpassword
+    });
+    await newuser.save();
+    return res.json({message:"user created succefully!"})
+})
+
+//login
+router.post('/login',async(req,res)=>{
+  const {name,email,password}=req.body
+  const admin=await UserM.findOne({email})
+  // res.json({admin})
+  // this row if admin false  
+  !admin && res.json({message:"user  not existe!"})
+
+  // this else -> admin true
+  const ispasswordvalid=await bcrypt.compare(password, admin.password)
+  !ispasswordvalid && res.json({message:"name or password not correcte !"}) 
+  var token = jwt.sign({ id: admin._id }, 'najim');
+  return res.json({token,adminID:admin._id})
+})
+ 
+ 
 module.exports = router;

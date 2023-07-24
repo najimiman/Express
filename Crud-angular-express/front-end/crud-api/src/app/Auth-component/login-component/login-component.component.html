@@ -1,0 +1,41 @@
+<!-- Login and registre compenent -->
+<div class="parent clearfix">
+    <div class="bg-illustration">
+      <img src="https://i.ibb.co/Pcg0Pk1/logo.png" alt="logo">
+
+      <div class="burger-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+    </div>
+    
+    <div class="login">
+      <div class="container">
+        <h2 *ngIf="!registre">Login to access to your account</h2>
+        <h2 *ngIf="registre">Registre to access your account</h2>
+        <div class="login-form">
+          <form (ngSubmit)="submitauth()">
+            <input type="text"  *ngIf="registre" placeholder="user name" name="username" [(ngModel)]="user.username">
+            <input type="email" placeholder="E-mail Address" name="email" [(ngModel)]="user.email" >
+            <input type="password" placeholder="Password" name="password" [(ngModel)]="user.password">
+
+            <div class="remember-form">
+              <input type="checkbox">
+              <span>Remember me</span>
+            </div>
+            <div class="forget-passe">
+              <a  *ngIf="!registre" (click)="registre=true">Registre</a>
+              <a  *ngIf="registre" (click)="registre=false">Login</a>
+            </div>
+            {{mymessage}}
+
+            <button type="submit" *ngIf="!registre">LOG-IN</button>
+            <button type="submit" *ngIf="registre">Registre</button>
+          </form>
+        </div>
+    
+      </div>
+      </div>
+  </div>

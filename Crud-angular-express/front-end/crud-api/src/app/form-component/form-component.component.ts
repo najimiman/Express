@@ -57,7 +57,7 @@ addtask(){
     this.taskservice.addtask(this.mytask).subscribe(data=>{
       console.log(data);
       console.log(this.mytask.datetime);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/Home']);
     },(err)=>{
       console.log(err)
     })
@@ -72,7 +72,7 @@ updatetask(){
     console.log(data);
     console.log(this.id,this.mytask);
     // console.log(this.mytask.datetime);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/Home']);
   },(err)=>{
     console.log(err)
   })

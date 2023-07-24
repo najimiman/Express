@@ -36,4 +36,13 @@ export class MyServiceService {
     return this.http.put(`/api/updatetache?id=${id}&name=${name}&datetime=${datetime}`,{});
   }
 
+  //authentification registre
+  authentificationregistre(body:any){
+    return this.http.post('/api/register',body);
+  }
+  //authentification login
+  authentificationlogin(body:any){
+    return this.http.post('/api/login',body);
+  }
+
 }

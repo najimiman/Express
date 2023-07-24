@@ -98,19 +98,23 @@ router.get('/uers', async (req, res, next) => {
 //registre
 router.post('/register',async(req,res)=>{
   const {name,email,password}=req.body
-  const admin=await UserM.findOne({email,password})
+  const admin=await UserM.findOne({email})
+  // res.json({admin})
   // this row if admin true res message 
-  admin && res.json({message:"user already existe!"})
-
-  // this else created user
+  if(admin){
+    res.json({message:"user already existe!"})
+  }
+  else{
     const hashedpassword=bcrypt.hashSync(password,10)
     const newuser=new UserM({
-      name,
-      email,
+      name:name,
+      email:email,
       password:hashedpassword
     });
     await newuser.save();
     return res.json({message:"user created succefully!"})
+  }
+   
 })
 
 //login
@@ -119,13 +123,21 @@ router.post('/login',async(req,res)=>{
   const admin=await UserM.findOne({email})
   // res.json({admin})
   // this row if admin false  
-  !admin && res.json({message:"user  not existe!"})
+  if(!admin){
+    res.json({message:"user  not existe!"})
+  } 
+  else{
+    const ispasswordvalid=await bcrypt.compare(password, admin.password)
+  if(!ispasswordvalid){
+    res.json({message:"name or password not correcte !"}) 
+  }
+  else{
+    var token = jwt.sign({ id: admin._id }, 'najim');
+    return res.json({token,adminID:admin._id})
 
-  // this else -> admin true
-  const ispasswordvalid=await bcrypt.compare(password, admin.password)
-  !ispasswordvalid && res.json({message:"name or password not correcte !"}) 
-  var token = jwt.sign({ id: admin._id }, 'najim');
-  return res.json({token,adminID:admin._id})
+  }
+  }
+  
 })
  
  

@@ -17,12 +17,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { LoginComponentComponent } from './Auth-component/login-component/login-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponentComponent,
-    FormComponentComponent
+    FormComponentComponent,
+    LoginComponentComponent,
   ],
   imports: [
     HttpClientModule,
